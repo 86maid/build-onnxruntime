@@ -142,7 +142,7 @@ jobs:
             feature-set: none
             runs-on: windows-2022
           - target: x86_64-pc-windows-msvc
-            args: "--x86 --xnnpack"
+            args: "--A x86 --xnnpack"
             static: true
             feature-set: none
             runs-on: windows-2022
