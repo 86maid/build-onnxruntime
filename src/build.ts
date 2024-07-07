@@ -9,7 +9,7 @@ import $ from '@david/dax';
 const arch: 'x64' | 'arm64' = getArch();
 const platform: 'win32' | 'darwin' | 'linux' = getPlatform();
 
-const TARGET_ARCHITECTURE_TYPE = new EnumType([ 'x86_64', 'aarch64' ]);
+const TARGET_ARCHITECTURE_TYPE = new EnumType([ 'x86', 'x86_64', 'aarch64' ]);
 
 await new Command()
 	.name('ort-artifact')
