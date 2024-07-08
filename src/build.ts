@@ -215,7 +215,7 @@ await new Command()
 		args.push('-Donnxruntime_BUILD_UNIT_TESTS=OFF');
 
 		if (options.arch === 'x86') {
-			args.push('-A', 'x86');
+			args.push('--x86');
 		}
 
 		const sourceDir = options.static ? join(root, 'src', 'static-build') : 'cmake';
