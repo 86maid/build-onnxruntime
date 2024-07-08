@@ -214,15 +214,17 @@ await new Command()
 
 		args.push('-Donnxruntime_BUILD_UNIT_TESTS=OFF');
 
+		let x86_flag = '';
+		
 		if (options.arch === 'x86') {
-			args.push('--x86');
+			x86_flag = '--x86';
 		}
 
 		const sourceDir = options.static ? join(root, 'src', 'static-build') : 'cmake';
 		const outDir = join(root, 'output');
 
 		await $`cmake -S ${sourceDir} -B build -D CMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release -DCMAKE_INSTALL_PREFIX=${outDir} -DONNXRUNTIME_SOURCE_DIR=${onnxruntimeRoot} --compile-no-warning-as-error ${args}`;
-		await $`cmake --build build --config Release --parallel ${cpus().length}`;
+		await $`cmake --build build --config Release --parallel ${cpus().length} ${x86_flag}`;
 		await $`cmake --install build --config Release`;
 
 		const artifactOutDir = join(root, 'artifact');
