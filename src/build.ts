@@ -167,11 +167,9 @@ await new Command()
 			if (platform === 'darwin') {
 				if (options.arch === 'aarch64') {
 					args.push('-DCMAKE_OSX_ARCHITECTURES=arm64');
-				} else if (options.arch == 'x86_64'){
-					args.push('-DCMAKE_OSX_ARCHITECTURES=x86_64');
 				} else {
-					args.push('-DCMAKE_OSX_ARCHITECTURES=x86');
-				}
+					args.push('-DCMAKE_OSX_ARCHITECTURES=x86_64');
+				} 
 			} else {
 				if (options.arch === 'aarch64' && arch !== 'arm64') {
 					args.push('-Donnxruntime_CROSS_COMPILING=ON');
@@ -215,6 +213,10 @@ await new Command()
 		}
 
 		args.push('-Donnxruntime_BUILD_UNIT_TESTS=OFF');
+
+		if (options.arch === 'x86') {
+			args.push('-A', 'x86');
+		}
 
 		const sourceDir = options.static ? join(root, 'src', 'static-build') : 'cmake';
 		const outDir = join(root, 'output');
