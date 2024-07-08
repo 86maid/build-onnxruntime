@@ -167,8 +167,10 @@ await new Command()
 			if (platform === 'darwin') {
 				if (options.arch === 'aarch64') {
 					args.push('-DCMAKE_OSX_ARCHITECTURES=arm64');
-				} else {
+				} else if (options.arch == 'x86_64'){
 					args.push('-DCMAKE_OSX_ARCHITECTURES=x86_64');
+				} else {
+					args.push('-DCMAKE_OSX_ARCHITECTURES=x86');
 				}
 			} else {
 				if (options.arch === 'aarch64' && arch !== 'arm64') {
